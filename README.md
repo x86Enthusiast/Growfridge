@@ -12,4 +12,4 @@ For a detailed write up see https://growfridge.io and press the "BUILD YOUR OWN"
 You can find the graphics used in that part of the website in the tutorial-images folder.
 
 ## License
-This project is licesed under the Gnu Public License 3
+This project is licensed under the Gnu Public License 3
