@@ -1,0 +1,75 @@
+<div id="section_head" class="sectionHead">
+    <p class="topSpacer"></p>
+    <p class="centeredText">Do you want to build your own mushroom growfridge?</p>
+    <p class="centeredText">This project was built from the ground up to be reproducible by anyone willing to put in the work.</p>
+    <p class="centeredText">Down below you will find the parts and tools required and a guide meant to be a general outline for the steps required.</p>
+    <img class="item" src="static/resources/Nutrition-Facts.svg"/>
+    <p class="centeredText">HOW TO BUILD THIS THING:</p>
+    <p class="centeredText">PART 0: preamble</p>
+    <p class="centeredText">This guide is not meant to be followed to the letter.</p>
+    <p class="centeredText">Depending on your fridge, how much space you have and your own preferences you SHOULD deviate from what I did.</p>
+    <p class="centeredText">This Project is made up of multiple subsystems being controlled by an arduino through a relays board.</p>
+    <p class="centeredText"></p>
+    <p class="centeredText">These subsystems are the following:</p>
+    <p class="centeredText">1. A fridge with holes made for ventilation and cables.</p>
+    <p class="centeredText">2. A self build fogger, used to pipe humid air into the fridge.</p>
+    <p class="centeredText">3. An Arduino with a relays board that controls the fridge and fogger.</p>
+    <p class="centeredText">4. A 20x4 lcd with buttons that allow you to input the temperature and humidity you want inside the fridge.</p>
+    <p class="centeredText"></p>
+    <p class="centeredText">PART 1: acquire materials</p>
+    <p class="centeredText">Some important information about the materials required.</p>
+    <p class="centeredText">With the used fridge, focus on getting a unit with one big chamber, instead of multiple smaller ones.</p>
+    <p class="centeredText">The plastic box is used to build a humidifier. This one should be have at least 4 Liters of capacity.</p>
+    <p class="centeredText">The Metal Mesh should be very fine, this is used to keep out any pests that might be attracted to the smell of tasty mushrooms.</p>
+    <p class="centeredText"></p>
+    <p class="centeredText">PART 2: building the fogger</p>
+    <p class="centeredText">You can basically imagine this as a box with water that gets turned into fog using an ultrasonic fogger.</p>
+    <p class="centeredText">You can find these foggers for relatively cheap on sites like amazon or ebay.</p>
+    <p class="centeredText">Get yourself a plastic box with a tight fitting lid. Make a hole into the lid, that will be used for the fan to push air through.</p>
+    <p class="centeredText">Make another hole into the lid, into which you tightly press the plastic tube you bought.</p>
+    <p class="centeredText">The moisture will be pushed through this tube by the pressure the fan builds in the box.</p>
+    
+    <img class="itemWide" src="static/resources/HowToMakeAFogger.png"/>
+    <p class="centeredText"></p>
+    <p class="centeredText">PART 3: prepare the fridge</p>
+    <p class="centeredText">We are going to make some holes. This is where you really have too look out for your fingers if you are a pasty nerd like me.</p>
+    <p class="centeredText">This is the way I made the holes in my fridge:</p>
+    <p class="centeredText">Mark where you want to make a hole. You want at least 2, one for your humid air tube and one as exhaust.</p>
+    <p class="centeredText">I chose to add another to have a way of adding non humidified air.</p>
+    <p class="centeredText">I made these holes with a jigsaw. First, I used a drill to make a hole big enough for the jigsaw blade to fit in.</p>
+    <p class="centeredText">Once you managed to put a hole into the outer shell of the fridge, use the jigsaw to cut away whatever you can.</p>
+    <p class="centeredText">In my case, the outside of the fridge was made out of thin aluminum, which encased a polystyrene foam. The inside layer was plastic and easy to cut with the blade of the jigsaw, after making a hole with the drill.</p>
+    <p class="centeredText">You should add some humidity proof barrier to hinder water seeping into the space between the outside and inside wall. </p>
+    <p class="centeredText">I used water proof duct tape, but acrylic would also work.</p>
+    <p class="centeredText">You should make sure the holes you want to use for air have a tight wire mesh in front of it to keep pests like fruit flies from getting into your system.</p>
+    <p class="centeredText">Now you can affix your fan to your air intake, if you decided to add one of those.</p>
+    <p class="centeredText">You can also add a fan to the exhaust, if you want to have one.</p>
+    <p class="centeredText">You should put the humid air tube through the hole you made for it. Try to make it as tight as possible and fill any left over space, to prevent any contaminants or pests to enter the system.</p> 
+    <p class="centeredText">I affixed the tube inside the fridge using left over metal mesh and screws.</p>
+    <p class="centeredText">All that is left to do inside the fridge is adding the sensor. I would advise you to first solder cables to ports 1, 2 and 4 of the sensor, before you affix it inside.</p>
+    <img class="itemWide" src="static/resources/WhereToMakeHoles.png"/>
+    <p class="centeredText"></p>
+    <p class="centeredText">PART 4.1: Electronics</p>
+    <p class="centeredText">An easy way to control these different systems through the use of an arduino is a relays board.</p>
+    <p class="centeredText">I use a 230v relays board with 4 individually addressable relays.</p>
+    <p class="centeredText">BIG WARNING, I AM NOT AN ELECTRICIAN.</p>
+    <p class="centeredText">I got myself some extension cables and a power strip, to hook up the different appliances to the relays board.</p>
+    <p class="centeredText">For instance, I hooked the fans to their 12V PSU in parallel, which plugs into a power strip with the fogger, which is controlled by a relays.</p>
+    <p class="centeredText">This might not be the best solution, maybe 4 plug sockets connected to the relays board, maybe something else.</p>
+    <p class="centeredText">The solution I used works, but with enough electrical competency you can definitely improve it yourself.</p>
+    <p class="centeredText">Down below you will find a small scale diagram, as to how I hooked up my setup.</p>
+    <p class="centeredText">PART 4.2: The Arduino</p>
+    <p class="centeredText">This project used an Arduino Mega. It receives data from the DHT-22 Sensor in the fridge, displays it on a 20x4 LCD display and takes inputs through 4 Keyboard switches.</p>
+    <p class="centeredText">My implementation mounted the LCD and keyboard switches in a 3D Printed case, although you can probably do this differently, if you do not have access to a 3D printer.</p>
+    <p class="centeredText">Down below you will find wiring diagrams for the different parts of the systems connected to the arduino.</p>  
+    <img class="itemWide" src="static/resources/WiringGuideButtons.png"/>
+    <img class="itemWide" src="static/resources/Arduino.png"/>
+    <p class="centeredText">All of these Diagrams, the code for the Arduino and the STL file for the case are also found in this git repository</p>
+    <p class="centeredText"><a href="https://github.com/miabl0">HERE</a>.</p>
+    <p class="centeredText"></p>
+    <p class="centeredText">PART 5: In conclusion</p>
+    
+    <p class="centeredText">After wiring everything up, you can start using the fridge to grow whatever tasty mushroom you can imagine.</p>
+    <p class="centeredText">If you have any improvements to this design, please let me know.</p>
+    
+</div>

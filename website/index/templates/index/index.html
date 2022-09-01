@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>Growfridge</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    </head>
+    <body>
+        <section >
+            <div class="container">
+                <div><img class="fridgeIcon" src="/static/resources/fridge.svg"></div>
+                <div class="headerText">Growfridge.io</div>
+            </div>
+        </section>
+        <div id="textContainer" class="textContainer">
+            <div class="text">
+                <p id="p1">Welcome. Press one of the</p>
+                <p id="p2">four buttons for more</p>
+                <p id="p3">more information.</p>
+            </div>
+        </div>
+        <div class="content" style="position: relative;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        top : -5em;">
+            <div id="buttons" class="buttons">
+                <button class="bigbutton" onclick="infoFunc()"><img class="buttonimg" src="/static/resources/CurrentSensorData.png"></button>
+                <button class="bigbutton" onclick="aboutThisProject()"><img class="buttonimg" src="/static/resources/AboutThisProject.png"></button>
+                <button class="bigbutton" onclick="buildYourOwn()"><img class="buttonimg" src="/static/resources/BuildYourOwn.png"></button>
+                <button class="bigbutton" onclick="resourcesOfAllKinds()"><img class="buttonimg" src="/static/resources/ResourcesOfAllKinds.png"></button>
+            </div>
+            <div id="siteContent" class="content">
+    
+            </div>
+            <div id="footer" class="footer">
+
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript"> 
+        var humidity = "";
+        var temperature = "";
+        var shouldWrite = false;
+        function infoFunc() {
+            document.getElementById("p1").innerHTML = "Current sensor data:";
+            shouldWrite = true;
+            $.ajax({
+                url: "/static/html/currentsensordata.html",
+                type: "GET",
+                success: function(data){
+                    document.getElementById("siteContent").innerHTML = data;
+                }
+            });
+        }
+
+        function buildYourOwn() {
+            shouldWrite = false;
+            $.ajax({
+                url: "/static/html/buildyourown.html",
+                type: "GET",
+                success: function(data){
+                    document.getElementById("siteContent").innerHTML = data;
+                }
+            });
+            if(shouldWrite == false) {
+                document.getElementById("p1").innerHTML = "BUILD YOUR OWN";
+                document.getElementById("p2").innerHTML = "Wanna build your own Growfridge?";
+                document.getElementById("p3").innerHTML = "Find out how here.";
+            }
+        }
+
+        function aboutThisProject() {
+            $.ajax({
+                url: "/static/html/aboutthisproject.html",
+                type: "GET",
+                success: function(data){
+                    document.getElementById("siteContent").innerHTML = data;
+                }
+            });
+            if(shouldWrite == false) {
+                document.getElementById("p1").innerHTML = "ABOUT THIS PROJECT";
+                document.getElementById("p2").innerHTML = "Some general info.";
+                document.getElementById("p3").innerHTML = "Why did I make this?";
+            }
+        }
+
+        function resourcesOfAllKinds() {
+            $.ajax({
+                url: "/static/html/resourcesofallkinds.html",
+                type: "GET",
+                success: function(data){
+                    document.getElementById("siteContent").innerHTML = data;
+                }
+            });
+            if(shouldWrite == false) {
+                document.getElementById("p1").innerHTML = "RESOURCES";
+                document.getElementById("p2").innerHTML = "All kinds of info";
+                document.getElementById("p3").innerHTML = "about mushroom cultivation.";
+            }
+        }
+
+
+
+        function impressum() {
+            $.ajax({
+                url: "/html/buildyourown.html",
+                type: "GET",
+                dataType: "json",
+                success: function(data){
+                    document.getElementById("siteContent").innerHTML = data;
+                }
+            });
+        }
+
+        //send ajax request to server at /requestVals and request temperature from server every 5 seconds
+        setInterval(function(){
+            console.log("requesting");
+            $.ajax({
+                url: "/requestVals",
+                type: "GET",
+                dataType: "json",
+                success: function(data){
+                    humidity = data.Humidity;
+                    temperature = data.Temperature;
+                    if(shouldWrite){
+                        document.getElementById("p2").innerHTML = "Temperature: " + temperature + "C";
+                        document.getElementById("p3").innerHTML = "Humidity: " + humidity + "%";
+                    }
+                }
+            });
+        }, 5000);
+        </script>
+</html>

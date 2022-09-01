@@ -1,0 +1,13 @@
+Tech:
+Arduino Mega
+DHT22 Temperature and Humidity Sensor
+Kailh Keyboard Switches x 4
+Kailh Hotswap Sockets x 4
+2004 20x4 LCD with I2C module
+
+A fridge
+ultrasonic fogger
+plastic box for the fogger to live in
+plastic tube to route the fog into the fridge
+2 small low noise 12v pc fans
+12 v powersupply for the fans

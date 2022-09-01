@@ -1,0 +1,9 @@
+Adafruit DHT22 Sensor Library:
+https://github.com/adafruit/DHT-sensor-library
+
+I2C LCD Library:
+https://github.com/johnrickman/LiquidCrystal_I2C
+
+How to install:
+Download the latest release as a .zip file.
+In your Arduino IDE, select "Sketch", "Include Library", "Add .ZIP Library" and select each .zip file.
